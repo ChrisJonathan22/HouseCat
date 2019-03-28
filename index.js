@@ -19,7 +19,7 @@ client.on("ready", () => {
 });
 
 client.on("message", message => {
-  if (message.content === "House Cat") {
+  if (message.content === "SuperSecretWord123") {
     message.channel.send("Meow");
     setInterval(() => {
       rainbowRole(message);
