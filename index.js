@@ -11,7 +11,7 @@ const client = new Discord.Client();
 const rainbowRole = message => {
   let random = "#" + ((Math.random() * 0xffffff) << 0).toString(16);
 
-  let role = message.guild.roles.find(r => r.name === "rainbow");
+  let role = message.guild.roles.find(r => r.name === "IT Support");
 
   role.setColor(random);
 };
