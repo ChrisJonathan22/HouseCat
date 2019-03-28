@@ -1,5 +1,8 @@
 const config = require("config");
 const Discord = require("discord.js");
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 3000;
 
 const client = new Discord.Client();
 
@@ -25,3 +28,7 @@ client.on("message", message => {
 });
 
 client.login(config.get("token"));
+
+app.get("/", (req, res) => res.send("Meow"));
+
+app.listen(port, () => console.log(`Listening on port ${port}!`));
