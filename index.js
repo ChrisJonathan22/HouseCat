@@ -4,12 +4,14 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 
+let refreshIntervalId;
+
 const client = new Discord.Client();
 
 const rainbowRole = message => {
   let random = "#" + ((Math.random() * 0xffffff) << 0).toString(16);
 
-  let role = message.guild.roles.find(r => r.name === "IT Support");
+  let role = message.guild.roles.find(r => r.name === "rainbow");
 
   role.setColor(random);
 };
@@ -19,11 +21,16 @@ client.on("ready", () => {
 });
 
 client.on("message", message => {
-  if (message.content === "SuperSecretWord123") {
+  if (message.content === "HouseCatStartTheDisco") {
     message.channel.send("Meow");
-    setInterval(() => {
+    refreshIntervalId = setInterval(() => {
       rainbowRole(message);
     }, 3000);
+  }
+
+  if (message.content === "HouseCatStopTheDisco") {
+    console.log(refreshIntervalId);
+    clearInterval(refreshIntervalId);
   }
 });
 
