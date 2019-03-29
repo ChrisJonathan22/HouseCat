@@ -29,8 +29,12 @@ client.on("message", message => {
   }
 
   if (message.content === "HouseCatStopTheDisco") {
-    console.log(refreshIntervalId);
+    message.channel.send("Hiss");
     clearInterval(refreshIntervalId);
+  }
+
+  if (message.content === "*pets housecat*") {
+    message.channel.send("Meow Meow");
   }
 });
 
