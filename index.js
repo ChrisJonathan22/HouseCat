@@ -33,8 +33,12 @@ client.on("message", message => {
     clearInterval(refreshIntervalId);
   }
 
-  if (message.content === "*pets housecat*") {
+  if (message.content === "pets housecat") {
     message.channel.send("Meow Meow");
+  }
+
+  if (message.content === "gives milk") {
+    message.channel.send("*drinks*");
   }
 });
 
