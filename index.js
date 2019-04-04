@@ -40,6 +40,17 @@ client.on("message", message => {
   if (message.content === "gives milk") {
     message.channel.send("*drinks*");
   }
+
+  if (message.content === "urbandict") {
+    console.log("test");
+    const keyword = message.content.slice(10);
+    axios
+      .get(`http://api.urbandictionary.com/v0/define?term=${keyword}`)
+      .then(response => {
+        message.channel.send(response.list[0].definition);
+      })
+      .catch(() => message.channel.send("meow??"));
+  }
 });
 
 client.login(config.get("token"));
