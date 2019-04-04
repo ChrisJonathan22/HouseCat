@@ -108,6 +108,12 @@ client.on("message", message => {
               "A god fearing keyboard dwelling rodent into hacking" +
               "```"
           );
+        } else if (sentence.includes("javascript")) {
+          message.channel.send(
+            "```" +
+              "JavaScript is the digital equivalent of the English language in the sense that it's universally recognized. It's also weaved into the fabric of programming. You see it everywhere; you're just not aware of it. JavaScript is present in every platform imaginable — browsers, mobile and desktop applications, IoT devices, and more!. What do Paypal, Netflix, LinkedIn, and Uber all have in common? They all run on JavaScript — Node.js to be specific. The majority of the world's top websites and apps use JavaScript in one way or another.Since more and more businesses are going digital, there is a high demand for people skilled in JavaScript. And as the programming language continues to grow, the interest in JavaScript developers should also continue to skyrocket. The average salary for JavaScript programmers ranges from $74,000 to $130,000. 'Nuff said." +
+              "```"
+          );
         } else {
           message.channel.send(
             "```" + response.data.list[0].definition + "```"
