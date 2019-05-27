@@ -23,6 +23,27 @@ client.on("ready", () => {
 });
 
 client.on("message", message => {
+  if (message.content.substring(0, 7) === "!crypto") {
+    const symbol = message.content.substring(8).toUpperCase();
+
+    const URL =
+      "https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest";
+    axios
+      .get(URL, {
+        params: { symbol },
+        headers: { "X-CMC_PRO_API_KEY": config.get("cmp") }
+      })
+      .then(response => {
+        // If request is good...
+        message.channel.send(
+          `USD $${response.data.data[symbol].quote.USD.price}`
+        );
+      })
+      .catch(() => {
+        message.channel.send(`Meow?`);
+      });
+  }
+
   if (message.content === "HouseCatStartTheDisco") {
     message.channel.send("Meow");
     refreshIntervalId = setInterval(() => {
@@ -209,7 +230,7 @@ client.on("message", message => {
 
   if (message.content === "!skills") {
     message.reply(
-      ```\nNodeJS\nJava\nJavaScript\nPython\nGo\nReact\nSpring\nAngular\nVue\nDjango\nExpress\nDocker\nPHP\nCSS\nHTML\nMongoDB\nEurope\nAmericas\nAsia\nAfrica\nAustralia```
+      "```\nNodeJS\nJava\nJavaScript\nPython\nGo\nReact\nSpring\nAngular\nVue\nDjango\nExpress\nDocker\nPHP\nCSS\nHTML\nMongoDB\nEurope\nAmericas\nAsia\nAfrica\nAustralia```"
     );
   }
 
