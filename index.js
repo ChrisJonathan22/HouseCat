@@ -146,10 +146,10 @@ client.on("message", message => {
   }
 
   if (
-    message.content.substring(0, 3) == "```" &&
+    message.content.substring(0, 6) == "```js>" &&
     message.content.slice(-3) == "```"
   ) {
-    let code = message.content.slice(3).slice(0, -3);
+    let code = message.content.slice(6).slice(0, -3);
     try {
       const result = safeEval(code);
       message.reply("Result: " + result);
@@ -253,7 +253,7 @@ client.on("message", message => {
           },
           {
             name:
-              "Execute multiline Javascript using three ``` backticks at the start and end",
+              "Execute multiline Javascript using three ``` backticks at the start (also add js>) and finish the end with backticks like normal",
             value: "Example: ```const hello = 'hello world'; \nhello```"
           },
           {
