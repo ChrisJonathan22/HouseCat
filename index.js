@@ -209,7 +209,7 @@ client.on("message", message => {
 
   if (message.content === "!skills") {
     message.reply(
-      `NodeJS\nJava\nJavaScript\nPython\nGo\nReact\nSpring\nAngular\nVue\nDjango\nExpress\nDocker\nPHP\nCSS\nHTML\nMongoDB\nEurope\nAmericas\nAsia\nAfrica\nAustralia`
+      ```\nNodeJS\nJava\nJavaScript\nPython\nGo\nReact\nSpring\nAngular\nVue\nDjango\nExpress\nDocker\nPHP\nCSS\nHTML\nMongoDB\nEurope\nAmericas\nAsia\nAfrica\nAustralia```
     );
   }
 
