@@ -153,9 +153,11 @@ client.on("message", message => {
     try {
       const result = safeEval(code);
       message.reply("Result: " + result);
-    } catch (error) {
+    } catch (ex) {
       message.reply(
-        "There is either an error, you are attempting to access a global object or cause a buffer exceed. If you are using multiple lines make sure to use three backticks at the start and end only."
+        `Error - Type: ${ex.trace[0].type}, Name: "${
+          ex.trace[0].name
+        }", Error at: ${JSON.stringify(ex.trace[0].loc)}`
       );
     }
   }
@@ -221,9 +223,11 @@ client.on("message", message => {
     try {
       const result = safeEval(code);
       message.reply("Result: " + result);
-    } catch (error) {
+    } catch (ex) {
       message.reply(
-        "There is either an error or you are attempting to access a global object"
+        `Error - Type: ${ex.trace[0].type}, Name: "${
+          ex.trace[0].name
+        }", Error at: ${JSON.stringify(ex.trace[0].loc)}`
       );
     }
   }
