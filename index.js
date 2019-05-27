@@ -207,6 +207,12 @@ client.on("message", message => {
     }
   }
 
+  if (message.content === "!skills") {
+    message.reply(
+      `NodeJS\nJava\nJavaScript\nPython\nGo\nReact\nSpring\nAngular\nVue\nDjango\nExpress\nDocker\nPHP\nCSS\nHTML\nMongoDB\nEurope\nAmericas\nAsia\nAfrica\nAustralia`
+    );
+  }
+
   if (message.content === "!help") {
     message.channel.send({
       embed: {
@@ -232,7 +238,7 @@ client.on("message", message => {
           {
             name: "Commands",
             value:
-              "```!addskill <Your Skill Here>\n!removeskill <Your Skill Here> \n!js> <Your Code Here>```"
+              "```!addskill <Your Skill Here>\n!removeskill <Your Skill Here> \n!js> <Your Code Here>\n!skills\nurbandict <keyword>```"
           }
         ],
         timestamp: new Date(),
