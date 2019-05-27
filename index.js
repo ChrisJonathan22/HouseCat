@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 const express = require("express");
 const axios = require("axios");
 const app = express();
+const safeEval = require("notevil");
 const port = process.env.PORT || 3000;
 
 let refreshIntervalId;
@@ -12,7 +13,7 @@ const client = new Discord.Client();
 const rainbowRole = message => {
   let random = "#" + ((Math.random() * 0xffffff) << 0).toString(16);
 
-  let role = message.guild.roles.find(r => r.name === "IT Support");
+  let role = message.guild.roles.find(r => r.name === "Tech Leads");
 
   role.setColor(random);
 };
@@ -119,12 +120,128 @@ client.on("message", message => {
             "```" + response.data.list[0].definition + "```"
           );
         }
-
-        // message.channel.send(
-        //   "```" + "when shreyas gets trippy and lick arse with kisan" + "```"
-        // );
       })
       .catch(err => message.channel.send("meow??"));
+  }
+
+  if (
+    message.content.substring(0, 3) == "```" &&
+    message.content.slice(-3) == "```"
+  ) {
+    let code = message.content.slice(3).slice(0, -3);
+    try {
+      const result = safeEval(code);
+      message.reply("Result: " + result);
+    } catch (error) {
+      message.reply(
+        "There is either an error, you are attempting to access a global object or cause a buffer exceed. If you are using multiple lines make sure to use three backticks at the start and end only."
+      );
+    }
+  }
+
+  if (message.content) {
+    const chance = Math.random();
+    if (chance < 0.1) {
+      const myArray = [
+        "chrissean",
+        "pepethinks",
+        "techlead",
+        "haha",
+        "pepefedora"
+      ];
+      const rand = myArray[Math.floor(Math.random() * myArray.length)];
+      const reaction = client.emojis.find("name", rand);
+      message.react(reaction);
+    }
+  }
+
+  if (
+    message.content.includes("morning") ||
+    message.content.includes("Morning")
+  ) {
+    message.reply("Morning! Great to have you back");
+  }
+
+  if (
+    message.content.includes("welcome") ||
+    message.content.includes("Welcome")
+  ) {
+    let reaction = client.emojis.find("name", "doggo");
+    message.react(reaction);
+    reaction = client.emojis.find("name", "blobrave");
+    message.react(reaction);
+    reaction = client.emojis.find("name", "neko");
+    message.react(reaction);
+    reaction = client.emojis.find("name", "birdvote");
+    message.react(reaction);
+  }
+
+  if (message.content === "haha") {
+    const ayy = client.emojis.find("name", "haha");
+    message.reply(`${ayy} LMAO`);
+  }
+
+  if (message.content.substring(0, 9) === "!addskill") {
+    const skill = message.content.substring(10);
+    const member = message.member;
+    let role = message.guild.roles.find("name", skill);
+    member.addRole(role).catch(console.error);
+  }
+
+  if (message.content.substring(0, 12) === "!removeskill") {
+    const skill = message.content.substring(13);
+    const member = message.member;
+    let role = message.guild.roles.find("name", skill);
+    member.removeRole(role).catch(console.error);
+  }
+
+  if (message.content.substring(0, 3) == "js>") {
+    const code = message.content.substring(3);
+    try {
+      const result = safeEval(code);
+      message.reply("Result: " + result);
+    } catch (error) {
+      message.reply(
+        "There is either an error or you are attempting to access a global object"
+      );
+    }
+  }
+
+  if (message.content === "!help") {
+    message.channel.send({
+      embed: {
+        color: 3447003,
+        author: {
+          name: client.user.username,
+          icon_url: client.user.avatarURL
+        },
+        title: "Information",
+        url: "https://github.com/RealChrisSean/devsLife/tree/master/codey",
+        description:
+          "This Bot was created by Nate, feel free to contribute to the development.",
+        fields: [
+          {
+            name: "Execute Javascript using 'js>'",
+            value: "Example: ```js> const hello = 'Hello World!'; hello```"
+          },
+          {
+            name:
+              "Execute multiline Javascript using three ``` backticks at the start and end",
+            value: "Example: ```const hello = 'hello world'; \nhello```"
+          },
+          {
+            name: "Commands",
+            value:
+              "```!addskill <Your Skill Here>\n!removeskill <Your Skill Here> \n!js> <Your Code Here>```"
+          }
+        ],
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "#devsLife Community"
+        }
+      }
+    });
   }
 });
 
