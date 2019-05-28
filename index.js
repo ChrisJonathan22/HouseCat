@@ -199,6 +199,8 @@ client.on("message", message => {
     message.react(reaction);
   }
 
+  // Stop
+
   if (message.content === "haha") {
     const ayy = client.emojis.find("name", "haha");
     message.reply(`${ayy} LMAO`);
