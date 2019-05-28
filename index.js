@@ -178,12 +178,12 @@ client.on("message", message => {
     }
   }
 
-  if (
-    message.content.includes("morning") ||
-    message.content.includes("Morning")
-  ) {
-    message.reply("Morning! Great to have you back");
-  }
+  // if (
+  //   message.content.includes("morning") ||
+  //   message.content.includes("Morning")
+  // ) {
+  //   message.reply("Morning! Great to have you back");
+  // }
 
   if (
     message.content.includes("welcome") ||
