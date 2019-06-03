@@ -23,6 +23,42 @@ client.on("ready", () => {
 });
 
 client.on("message", message => {
+  if (message.content) {
+    message.channel.send(`Join the resistance, free koala!`);
+  }
+
+  if (message.content === "!chucknorris") {
+    const URL = "https://api.chucknorris.io/jokes/random";
+
+    axios
+      .get(URL)
+      .then(response => {
+        // If request is good...
+        console.log(response.data.value);
+        message.channel.send(response.data.value);
+      })
+      .catch(() => {
+        message.channel.send(`Meow?`);
+      });
+  }
+
+  if (message.content.substring(0, 7) === "!number") {
+    const number = message.content.substring(8);
+
+    const URL = `https://numbersapi.com/${number}`;
+
+    axios
+      .get(URL)
+      .then(response => {
+        // If request is good...
+        console.log(response.data.value);
+        message.channel.send(response.data.value);
+      })
+      .catch(() => {
+        message.channel.send(`Meow?`);
+      });
+  }
+
   if (message.content.substring(0, 7) === "!crypto") {
     const symbol = message.content.substring(8).toUpperCase();
 
