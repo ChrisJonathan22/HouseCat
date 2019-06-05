@@ -1,1 +1,1 @@
-discord bot for devslife
+discord bot for Programmers Anonymous
