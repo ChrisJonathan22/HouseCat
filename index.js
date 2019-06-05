@@ -145,22 +145,6 @@ client.on("message", message => {
     message.reply("Morning! Great to have you back");
   }
 
-  if (
-    message.content.includes("welcome") ||
-    message.content.includes("Welcome")
-  ) {
-    let reaction = client.emojis.find("name", "pepehype");
-    message.react(reaction);
-    reaction = client.emojis.find("name", "raised_hands");
-    message.react(reaction);
-    reaction = client.emojis.find("name", "clap");
-    message.react(reaction);
-    reaction = client.emojis.find("name", "sunrise");
-    message.react(reaction);
-  }
-
-  // Stop
-
   if (message.content === "haha") {
     const ayy = client.emojis.find("name", "rofl");
     message.reply(`${ayy} LMAO`);
