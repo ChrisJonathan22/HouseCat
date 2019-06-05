@@ -13,7 +13,7 @@ const client = new Discord.Client();
 const rainbowRole = message => {
   let random = "#" + ((Math.random() * 0xffffff) << 0).toString(16);
 
-  let role = message.guild.roles.find(r => r.name === "Tech Leads");
+  let role = message.guild.roles.find(r => r.name === "Admin");
 
   role.setColor(random);
 };
@@ -126,11 +126,11 @@ client.on("message", message => {
     const chance = Math.random();
     if (chance < 0.1) {
       const myArray = [
-        "chrissean",
-        "pepethinks",
-        "techlead",
-        "haha",
-        "pepefedora"
+        "ok_hand",
+        "pepethinking",
+        "pepehype",
+        "relaxed",
+        "rofl"
       ];
       const rand = myArray[Math.floor(Math.random() * myArray.length)];
       const reaction = client.emojis.find("name", rand);
@@ -149,35 +149,21 @@ client.on("message", message => {
     message.content.includes("welcome") ||
     message.content.includes("Welcome")
   ) {
-    let reaction = client.emojis.find("name", "doggo");
+    let reaction = client.emojis.find("name", "pepehype");
     message.react(reaction);
-    reaction = client.emojis.find("name", "blobrave");
+    reaction = client.emojis.find("name", "raised_hands");
     message.react(reaction);
-    reaction = client.emojis.find("name", "neko");
+    reaction = client.emojis.find("name", "clap");
     message.react(reaction);
-    reaction = client.emojis.find("name", "birdvote");
+    reaction = client.emojis.find("name", "sunrise");
     message.react(reaction);
   }
 
   // Stop
 
   if (message.content === "haha") {
-    const ayy = client.emojis.find("name", "haha");
+    const ayy = client.emojis.find("name", "rofl");
     message.reply(`${ayy} LMAO`);
-  }
-
-  if (message.content.substring(0, 9) === "!addskill") {
-    const skill = message.content.substring(10);
-    const member = message.member;
-    let role = message.guild.roles.find("name", skill);
-    member.addRole(role).catch(console.error);
-  }
-
-  if (message.content.substring(0, 12) === "!removeskill") {
-    const skill = message.content.substring(13);
-    const member = message.member;
-    let role = message.guild.roles.find("name", skill);
-    member.removeRole(role).catch(console.error);
   }
 
   if (message.content.substring(0, 3) == "js>") {
@@ -194,12 +180,6 @@ client.on("message", message => {
     }
   }
 
-  if (message.content === "!skills") {
-    message.reply(
-      "```\nNodeJS\nJava\nJavaScript\nPython\nGo\nReact\nSpring\nAngular\nVue\nDjango\nExpress\nDocker\nPHP\nCSS\nHTML\nMongoDB\nEurope\nAmericas\nAsia\nAfrica\nAustralia```"
-    );
-  }
-
   if (message.content === "!help") {
     message.channel.send({
       embed: {
@@ -209,9 +189,9 @@ client.on("message", message => {
           icon_url: client.user.avatarURL
         },
         title: "Information",
-        url: "https://github.com/RealChrisSean/devsLife/tree/master/codey",
+        url: "https://github.com/devisle/HouseCat",
         description:
-          "This Bot was created by Nate, feel free to contribute to the development.",
+          "This Bot was created by Dev Isle, feel free to contribute to the development.",
         fields: [
           {
             name: "Execute Javascript using 'js>'",
@@ -224,14 +204,13 @@ client.on("message", message => {
           },
           {
             name: "Commands",
-            value:
-              "```!addskill <Your Skill Here>\n!removeskill <Your Skill Here> \n!js> <Your Code Here>\n!skills\nurbandict <keyword>```"
+            value: "```!js> <Your Code Here>\nurbandict <keyword>```"
           }
         ],
         timestamp: new Date(),
         footer: {
           icon_url: client.user.avatarURL,
-          text: "#devsLife Community"
+          text: "#Dev Isle Community"
         }
       }
     });
