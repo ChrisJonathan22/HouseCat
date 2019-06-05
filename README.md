@@ -1,1 +1,1 @@
-discord bot for Programmers Anonymous
+discord bot for Dev Isle
