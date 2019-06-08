@@ -65,11 +65,24 @@ client.on("message", message => {
       .get(URL)
       .then(response => {
         // If request is good...
-        console.log(response.data.slip.advice);
         message.channel.send(response.data.slip.advice);
       })
       .catch(err => {
-        console.log(err);
+        message.channel.send(`Meow?`);
+      });
+  }
+
+  if (message.content === "!catfact") {
+    const URL = `https://cat-fact.herokuapp.com/facts/random`;
+
+    axios
+      .get(URL)
+      .then(response => {
+        // If request is good...
+
+        message.channel.send(response.data.text);
+      })
+      .catch(err => {
         message.channel.send(`Meow?`);
       });
   }
@@ -206,7 +219,7 @@ client.on("message", message => {
           {
             name: "Commands",
             value:
-              "```!js> <Your Code Here>\nurbandict <keyword>\n!number <number>\n!advice\n!chucknorris```"
+              "```!js> <Your Code Here>\nurbandict <keyword>\n!number <number>\n!advice\n!chucknorris\n!catfact```"
           }
         ],
         timestamp: new Date(),
