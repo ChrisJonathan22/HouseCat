@@ -177,7 +177,7 @@ client.on("message", message => {
 
   if (message.content === "haha") {
     const ayy = client.emojis.find("name", "rofl");
-    message.reply(`${ayy} LMAO`);
+    message.reply(`LMAO`);
   }
 
   if (message.content.substring(0, 3) == "js>") {
