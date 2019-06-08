@@ -43,16 +43,33 @@ client.on("message", message => {
   if (message.content.substring(0, 7) === "!number") {
     const number = message.content.substring(8);
 
-    const URL = `https://numbersapi.com/${number}`;
+    const URL = `http://numbersapi.com/${number}`;
 
     axios
       .get(URL)
       .then(response => {
         // If request is good...
-        console.log(response.data.value);
-        message.channel.send(response.data.value);
+        console.log(response.data);
+        message.channel.send(response.data);
       })
-      .catch(() => {
+      .catch(err => {
+        console.log(err);
+        message.channel.send(`Meow?`);
+      });
+  }
+
+  if (message.content === "!advice") {
+    const URL = `https://api.adviceslip.com/advice`;
+
+    axios
+      .get(URL)
+      .then(response => {
+        // If request is good...
+        console.log(response.data.slip.advice);
+        message.channel.send(response.data.slip.advice);
+      })
+      .catch(err => {
+        console.log(err);
         message.channel.send(`Meow?`);
       });
   }
@@ -188,7 +205,8 @@ client.on("message", message => {
           },
           {
             name: "Commands",
-            value: "```!js> <Your Code Here>\nurbandict <keyword>```"
+            value:
+              "```!js> <Your Code Here>\nurbandict <keyword>\n!number <number>\n!advice\n!chucknorris```"
           }
         ],
         timestamp: new Date(),
