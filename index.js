@@ -25,6 +25,11 @@ client.on("ready", () => {
 client.on("message", message => {
   if (message.author.bot) return;
 
+  if (message.author.id === "184467369060597761") {
+    console.log(message.author.id);
+    message.channel.send(`Meow?`);
+  }
+
   if (message.content === "!chucknorris") {
     const URL = "https://api.chucknorris.io/jokes/random";
 
@@ -155,13 +160,7 @@ client.on("message", message => {
   if (message.content) {
     const chance = Math.random();
     if (chance < 0.1) {
-      const myArray = [
-        "ok_hand",
-        "pepethinking",
-        "pepehype",
-        "relaxed",
-        "rofl"
-      ];
+      const myArray = ["pepehype"];
       const rand = myArray[Math.floor(Math.random() * myArray.length)];
       const reaction = client.emojis.find("name", rand);
       message.react(reaction);
