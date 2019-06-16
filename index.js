@@ -25,11 +25,6 @@ client.on("ready", () => {
 client.on("message", message => {
   if (message.author.bot) return;
 
-  if (message.author.id === "184467369060597761") {
-    console.log(message.author.id);
-    message.channel.send(`Meow?`);
-  }
-
   if (message.content === "!chucknorris") {
     const URL = "https://api.chucknorris.io/jokes/random";
 
